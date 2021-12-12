@@ -17,5 +17,17 @@ spec:
       containers:
       - name: udagram-frontend-container
         image: lucasdamaceno/udagram-frontend
+      - envFrom:
+        - secretRef:
+            name: env-secret
+        - secretRef:
+            name: aws-secret
+        - configMapRef:
+            name: env-configmap
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
